@@ -1,7 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
+import { DataResponseType } from "@/interface/home.interface";
+import { UseQueryResult, useQuery } from "@tanstack/react-query";
 import { client } from "./client";
 
-const fetchMainBannerAll = async ({ query = {} }) => {
+const fetchMainBannerAll = ({ query = {} }) => {
   return client("/main-banner/all", {
     params: {
       ...query,
@@ -17,7 +18,7 @@ const useMainBannerAll = ({ query = {}, options }: any = {}) => {
   });
 };
 
-const fetchMainShortcutAll = async ({ query = {} }) => {
+const fetchMainShortcutAll = ({ query = {} }) => {
   return client("/main-shortcut/all", {
     params: {
       ...query,
@@ -33,20 +34,23 @@ const useMainShortcutAll = ({ query = {}, options }: any = {}) => {
   });
 };
 
-const fetchCollections = async ({ query = {} }) => {
-  return client("/main-shortcut/all", {
+const fetchCollections = ({ query = {} }) => {
+  return client("/collections", {
     params: {
       ...query,
     },
   }).then((data) => data);
 };
 
-const useCollections = ({ query = {}, options }: any = {}) => {
+const useCollections = ({ query = {}, options }: any = {}): UseQueryResult<
+  DataResponseType,
+  Error
+> => {
   return useQuery({
-    queryKey: ["main-shortcut-all", query],
+    queryKey: ["collections", query],
     queryFn: () => fetchCollections({ query }),
     ...options,
   });
 };
 
-export { useMainBannerAll, useMainShortcutAll, useCollections };
+export { useCollections, useMainBannerAll, useMainShortcutAll };
