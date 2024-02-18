@@ -1,5 +1,4 @@
 "use client";
-
 import ImageNext from "@/component/Image";
 import Input from "@/component/Input";
 import Text from "@/component/Text";
