@@ -158,6 +158,20 @@ export interface BannerListType {
   deletedAt: null | string;
 }
 
+export interface MainShortcutAll {
+  mainShortcutId: number;
+  title: string;
+  sort: number;
+  imageUrl: string;
+  linkUrl: string;
+  creator: string;
+  updater: string;
+  deleter: null;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: null;
+}
+
 export interface DataResponseType extends CommonResponseType {
   data: {
     items: CollectionType[];

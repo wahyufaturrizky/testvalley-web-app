@@ -18,7 +18,7 @@ const nextConfig = {
         protocol: "https",
         hostname: "dvd6ljcj7w3pj.cloudfront.net",
         port: "",
-        pathname: "/static/main_banner/**",
+        pathname: "/static/**",
       },
     ],
   },

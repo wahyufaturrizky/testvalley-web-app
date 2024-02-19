@@ -31,7 +31,7 @@ const useMainShortcutAll = ({ query = {}, options }: any = {}) => {
     queryKey: ["main-shortcut-all", query],
     queryFn: () => fetchMainShortcutAll({ query }),
     ...options,
-  });
+  }) as any;
 };
 
 const fetchCollections = ({ query = {} }) => {
