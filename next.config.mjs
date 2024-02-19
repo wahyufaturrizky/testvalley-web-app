@@ -20,6 +20,12 @@ const nextConfig = {
         port: "",
         pathname: "/static/**",
       },
+      {
+        protocol: "https",
+        hostname: "dvd6ljcj7w3pj.cloudfront.net",
+        port: "",
+        pathname: "/media/**",
+      },
     ],
   },
 };

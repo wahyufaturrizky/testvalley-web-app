@@ -11,6 +11,8 @@ interface PriceInfoPublicationType {
   price: number;
   discountPrice: number;
   discountRate: number;
+  couponDiscountPrice: number;
+  couponDiscountRate: number;
 }
 
 interface DiscountPublicationType {
@@ -49,7 +51,7 @@ interface PublicationType {
   applyCoupon: boolean;
 }
 
-interface ItemCollectionType {
+export interface ItemCollectionType {
   createdAt: string;
   updatedAt: string;
   deletedAt: null | string;

@@ -3,7 +3,12 @@ import ImageNext from "@/component/Image";
 import Input from "@/component/Input";
 import Text from "@/component/Text";
 import useDebounce from "@/hook/useDebounce";
-import { CollectionType, BannerListType, MainShortcutAll } from "@/interface/home.interface";
+import {
+  CollectionType,
+  BannerListType,
+  MainShortcutAll,
+  ItemCollectionType,
+} from "@/interface/home.interface";
 import { useCollections, useMainBannerAll, useMainShortcutAll } from "@/service/useHomeService";
 import { Spin } from "antd";
 import { useEffect, useState } from "react";
@@ -17,6 +22,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import "./page.css";
+import { UseFormatAmount } from "@/hook/useFormatAmount";
 
 export default function Home() {
   const [dataCollectionList, setDataCollectionList] = useState<CollectionType[]>([]);
@@ -83,6 +89,10 @@ export default function Home() {
   ]);
 
   const isLoading = isPendingCollection || isPendingBanner || isPendingShortcut;
+
+  const listHotDeal: any = dataCollectionList?.find(
+    (filterCollection: CollectionType) => filterCollection.title === "HOT DEAL"
+  );
 
   return (
     <main className="flex min-h-screen flex-col h-lvh overflow-auto">
@@ -188,34 +198,84 @@ export default function Home() {
         </Swiper>
       </div>
 
-      {/* Shortcut Icon */}
-      <div className="flex gap-10 items-center justify-center mt-10">
-        {dataShortcutList?.map((itemShortCut: MainShortcutAll) => {
-          return (
-            <div
-              className="flex flex-col items-center gap-2 cursor-pointer justify-center"
-              key={itemShortCut.title}
-            >
-              <ImageNext
-                alt={itemShortCut.title}
-                width={62}
-                height={62}
-                priority
-                src={itemShortCut.imageUrl}
-              />
-
-              <Text label={itemShortCut.title} className="text-base text-black" />
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Hot Deal */}
-
       <div className="sm:mx-auto sm:w-full sm:max-w-5xl">
-        {dataCollectionList.map((item: CollectionType) => {
+        {/* Shortcut Icon */}
+        <div className="flex gap-10 items-center justify-center mt-10">
+          {dataShortcutList?.map((itemShortCut: MainShortcutAll) => {
+            return (
+              <div
+                className="flex flex-col items-center gap-2 cursor-pointer justify-center"
+                key={itemShortCut.title}
+              >
+                <ImageNext
+                  alt={itemShortCut.title}
+                  width={62}
+                  height={62}
+                  priority
+                  src={itemShortCut.imageUrl}
+                />
+
+                <Text label={itemShortCut.title} className="text-base text-black" />
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Hot Deal */}
+        <div className="flex items-start mt-10">
+          <div className="w-1/4 flex flex-col">
+            <Text label="HOT DEAL" className="text-2xl font-semibold text-black" />
+            <Text label="HAPPY HOUR" className="text-xs text-gray" />
+          </div>
+
+          <div className="w-3/4 flex gap-2 overflow-x-auto whitespace-nowrap">
+            {listHotDeal?.items?.map((itemHotDeal: ItemCollectionType) => {
+              return (
+                <div key={itemHotDeal.key} className="rounded w-[174px] h-[312px]">
+                  <ImageNext
+                    alt={itemHotDeal.name}
+                    width={174}
+                    height={174}
+                    priority
+                    src={itemHotDeal.publication.media[0].uri}
+                    className="w-[174px] h-auto rounded"
+                  />
+
+                  <Text
+                    label={itemHotDeal.publication.productName}
+                    className="text-xs text-black text-pretty"
+                  />
+
+                  <div className="flex">
+                    <Text
+                      label={
+                        itemHotDeal.publication.priceInfo.couponDiscountRate
+                          ? String(itemHotDeal.publication.priceInfo.couponDiscountRate + "%")
+                          : " "
+                      }
+                      className="text-xs text-red text-pretty"
+                    />
+
+                    <Text
+                      label={String(
+                        UseFormatAmount(
+                          itemHotDeal.publication.priceInfo.discountPrice ||
+                            itemHotDeal.publication.priceInfo.couponDiscountPrice ||
+                            itemHotDeal.publication.priceInfo.price
+                        )
+                      )}
+                      className="text-xs text-black text-pretty"
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* {dataCollectionList.map((item: CollectionType) => {
           return <div key={item.id}>{item.title}</div>;
-        })}
+        })} */}
       </div>
     </main>
   );
