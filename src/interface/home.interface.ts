@@ -141,6 +141,23 @@ export interface CollectionType {
   singleCollections: [];
 }
 
+export interface BannerListType {
+  mainBannerId: number;
+  title: string;
+  sort: 1;
+  pcImageUrl: string;
+  mobileImageUrl: string;
+  linkUrl: string;
+  startDate: string;
+  endDate: string;
+  creator: string;
+  updater: string;
+  deleter: null | string;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: null | string;
+}
+
 export interface DataResponseType extends CommonResponseType {
   data: {
     items: CollectionType[];

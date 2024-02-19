@@ -15,7 +15,7 @@ const useMainBannerAll = ({ query = {}, options }: any = {}) => {
     queryKey: ["main-banner-all", query],
     queryFn: () => fetchMainBannerAll({ query }),
     ...options,
-  });
+  }) as any;
 };
 
 const fetchMainShortcutAll = ({ query = {} }) => {

@@ -3,22 +3,24 @@ import ImageNext from "@/component/Image";
 import Input from "@/component/Input";
 import Text from "@/component/Text";
 import useDebounce from "@/hook/useDebounce";
-import { CollectionType } from "@/interface/home.interface";
+import { CollectionType, BannerListType } from "@/interface/home.interface";
 import { useCollections, useMainBannerAll } from "@/service/useHomeService";
 import { Spin } from "antd";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Pagination } from "swiper/modules";
+import { Pagination, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 import "./page.css";
 
 export default function Home() {
   const [dataCollectionList, setDataCollectionList] = useState<CollectionType[]>([]);
+  const [dataBannerList, setDataBannerList] = useState<BannerListType[]>([]);
 
   const { getValues, watch, control } = useForm({
     defaultValues: {
@@ -55,6 +57,10 @@ export default function Home() {
       const { items } = data;
 
       setDataCollectionList(items);
+    }
+
+    if (isSuccessBanner) {
+      setDataBannerList(dataBanner?.data);
     }
   }, [isSuccessCollection, dataCollection, dataBanner, isSuccessBanner]);
 
@@ -142,16 +148,25 @@ export default function Home() {
 
       {/* Swiper */}
       <div className="relative h-[300px]">
-        <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
-          <SwiperSlide>Slide 1</SwiperSlide>
-          <SwiperSlide>Slide 2</SwiperSlide>
-          <SwiperSlide>Slide 3</SwiperSlide>
-          <SwiperSlide>Slide 4</SwiperSlide>
-          <SwiperSlide>Slide 5</SwiperSlide>
-          <SwiperSlide>Slide 6</SwiperSlide>
-          <SwiperSlide>Slide 7</SwiperSlide>
-          <SwiperSlide>Slide 8</SwiperSlide>
-          <SwiperSlide>Slide 9</SwiperSlide>
+        <Swiper
+          pagination={true}
+          navigation={true}
+          modules={[Pagination, Navigation]}
+          className="mySwiper"
+        >
+          {dataBannerList?.map((itemBanner: BannerListType) => {
+            return (
+              <SwiperSlide key={itemBanner?.title}>
+                <ImageNext
+                  alt={itemBanner?.title}
+                  width={1007}
+                  height={336}
+                  priority
+                  src={itemBanner?.pcImageUrl || "placeholder-profile.png"}
+                />
+              </SwiperSlide>
+            );
+          })}
         </Swiper>
       </div>
 

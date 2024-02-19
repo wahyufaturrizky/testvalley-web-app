@@ -30,7 +30,7 @@ const Input = ({
       )}
 
       {prefixIcon && (
-        <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           {prefixIcon}
         </div>
       )}
