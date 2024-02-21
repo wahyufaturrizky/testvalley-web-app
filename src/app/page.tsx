@@ -118,6 +118,19 @@ export default function Home() {
       filterCollection.title === "품절임박! 마지막 수량 한정특가 상품"
   );
 
+  const listGame: any = dataCollectionList?.find(
+    (filterCollection: CollectionType) => filterCollection.title === "게임기기 최저가 & 신작 모음"
+  );
+
+  const listMouse: any = dataCollectionList?.find(
+    (filterCollection: CollectionType) =>
+      filterCollection.title === "로지텍 AS보장 정품 마우스/키보드 단독특가"
+  );
+
+  const listLcd: any = dataCollectionList?.find(
+    (filterCollection: CollectionType) => filterCollection.title === "맥북 클리어런스 세일!"
+  );
+
   return (
     <main className="flex min-h-screen flex-col h-lvh overflow-auto">
       {isLoading && <Spin fullscreen />}
@@ -603,14 +616,233 @@ export default function Home() {
         <div className="flex items-start">
           <div className="w-1/4 flex flex-col">
             <Text
-              label="성능보장, PC주변기기 & 스피커 추천"
+              label="품절임박! 마지막 수량 한정특가 상품"
               className="text-2xl font-semibold text-black"
             />
-            <Text label="#LG #앱코 #BOSE" className="text-xs text-gray" />
+            <Text label="고민하면 품절!" className="text-xs text-gray" />
           </div>
 
           <div className="w-3/4 flex gap-2 overflow-x-auto whitespace-nowrap">
             {listPhone?.items?.map((itemHotDeal: ItemCollectionType) => {
+              return (
+                <div key={itemHotDeal.key} className="rounded w-[174px] h-[250px]">
+                  <ImageNext
+                    alt={itemHotDeal.name}
+                    width={174}
+                    height={174}
+                    priority
+                    src={itemHotDeal.publication.media[0].uri}
+                    className="w-[174px] h-auto rounded"
+                  />
+
+                  <Text
+                    label={itemHotDeal.publication.productName}
+                    className="text-xs text-black text-pretty"
+                  />
+
+                  {/* Price */}
+                  <div className="flex mt-2">
+                    <Text
+                      label={
+                        itemHotDeal.publication.priceInfo.couponDiscountRate
+                          ? String(itemHotDeal.publication.priceInfo.couponDiscountRate + "%")
+                          : " "
+                      }
+                      className="text-xs text-red text-pretty"
+                    />
+
+                    <Text
+                      label={String(
+                        UseFormatAmount(
+                          itemHotDeal.publication.priceInfo.discountPrice ||
+                            itemHotDeal.publication.priceInfo.couponDiscountPrice ||
+                            itemHotDeal.publication.priceInfo.price
+                        )
+                      )}
+                      className="text-xs text-black text-pretty"
+                    />
+                  </div>
+
+                  {/* Rating */}
+                  <div className="flex items-center mt-2">
+                    <ImageNext
+                      alt={itemHotDeal.name}
+                      width={12}
+                      height={12}
+                      priority
+                      src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}/star/star-darkgray.svg`}
+                      className="w-auto h-auto rounded"
+                    />
+                    <Text
+                      label={String(itemHotDeal.publication.rating)}
+                      className="text-xs text-black text-pretty"
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Game */}
+        <div className="flex items-start">
+          <div className="w-1/4 flex flex-col">
+            <Text
+              label="게임기기 최저가 & 신작 모음게임기기 최저가 & 신작 모음"
+              className="text-2xl font-semibold text-black"
+            />
+            <Text label="#한정수량 특가 #기대신작" className="text-xs text-gray" />
+          </div>
+
+          <div className="w-3/4 flex gap-2 overflow-x-auto whitespace-nowrap">
+            {listGame?.items?.map((itemHotDeal: ItemCollectionType) => {
+              return (
+                <div key={itemHotDeal.key} className="rounded w-[174px] h-[250px]">
+                  <ImageNext
+                    alt={itemHotDeal.name}
+                    width={174}
+                    height={174}
+                    priority
+                    src={itemHotDeal.publication.media[0].uri}
+                    className="w-[174px] h-auto rounded"
+                  />
+
+                  <Text
+                    label={itemHotDeal.publication.productName}
+                    className="text-xs text-black text-pretty"
+                  />
+
+                  {/* Price */}
+                  <div className="flex mt-2">
+                    <Text
+                      label={
+                        itemHotDeal.publication.priceInfo.couponDiscountRate
+                          ? String(itemHotDeal.publication.priceInfo.couponDiscountRate + "%")
+                          : " "
+                      }
+                      className="text-xs text-red text-pretty"
+                    />
+
+                    <Text
+                      label={String(
+                        UseFormatAmount(
+                          itemHotDeal.publication.priceInfo.discountPrice ||
+                            itemHotDeal.publication.priceInfo.couponDiscountPrice ||
+                            itemHotDeal.publication.priceInfo.price
+                        )
+                      )}
+                      className="text-xs text-black text-pretty"
+                    />
+                  </div>
+
+                  {/* Rating */}
+                  <div className="flex items-center mt-2">
+                    <ImageNext
+                      alt={itemHotDeal.name}
+                      width={12}
+                      height={12}
+                      priority
+                      src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}/star/star-darkgray.svg`}
+                      className="w-auto h-auto rounded"
+                    />
+                    <Text
+                      label={String(itemHotDeal.publication.rating)}
+                      className="text-xs text-black text-pretty"
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Mouse */}
+        <div className="flex items-start">
+          <div className="w-1/4 flex flex-col">
+            <Text
+              label="로지텍 AS보장 정품 마우스/키보드 단독특가"
+              className="text-2xl font-semibold text-black"
+            />
+            <Text
+              label="#병행수입 아닌 정품 제품으로 확실한 AS보장!"
+              className="text-xs text-gray"
+            />
+          </div>
+
+          <div className="w-3/4 flex gap-2 overflow-x-auto whitespace-nowrap">
+            {listMouse?.items?.map((itemHotDeal: ItemCollectionType) => {
+              return (
+                <div key={itemHotDeal.key} className="rounded w-[174px] h-[250px]">
+                  <ImageNext
+                    alt={itemHotDeal.name}
+                    width={174}
+                    height={174}
+                    priority
+                    src={itemHotDeal.publication.media[0].uri}
+                    className="w-[174px] h-auto rounded"
+                  />
+
+                  <Text
+                    label={itemHotDeal.publication.productName}
+                    className="text-xs text-black text-pretty"
+                  />
+
+                  {/* Price */}
+                  <div className="flex mt-2">
+                    <Text
+                      label={
+                        itemHotDeal.publication.priceInfo.couponDiscountRate
+                          ? String(itemHotDeal.publication.priceInfo.couponDiscountRate + "%")
+                          : " "
+                      }
+                      className="text-xs text-red text-pretty"
+                    />
+
+                    <Text
+                      label={String(
+                        UseFormatAmount(
+                          itemHotDeal.publication.priceInfo.discountPrice ||
+                            itemHotDeal.publication.priceInfo.couponDiscountPrice ||
+                            itemHotDeal.publication.priceInfo.price
+                        )
+                      )}
+                      className="text-xs text-black text-pretty"
+                    />
+                  </div>
+
+                  {/* Rating */}
+                  <div className="flex items-center mt-2">
+                    <ImageNext
+                      alt={itemHotDeal.name}
+                      width={12}
+                      height={12}
+                      priority
+                      src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}/star/star-darkgray.svg`}
+                      className="w-auto h-auto rounded"
+                    />
+                    <Text
+                      label={String(itemHotDeal.publication.rating)}
+                      className="text-xs text-black text-pretty"
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* LCD */}
+        <div className="flex items-start">
+          <div className="w-1/4 flex flex-col">
+            <Text label="맥북 클리어런스 세일!" className="text-2xl font-semibold text-black" />
+            <Text
+              label="오직 테스트밸리에서만! 30일 체험해보고 구매하자"
+              className="text-xs text-gray"
+            />
+          </div>
+
+          <div className="w-3/4 flex gap-2 overflow-x-auto whitespace-nowrap">
+            {listLcd?.items?.map((itemHotDeal: ItemCollectionType) => {
               return (
                 <div key={itemHotDeal.key} className="rounded w-[174px] h-[250px]">
                   <ImageNext
