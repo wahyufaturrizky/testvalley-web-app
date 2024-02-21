@@ -328,7 +328,7 @@ export default function Home() {
         </div>
 
         {/* New In */}
-        <div className="flex items-start">
+        <div className="flex items-start mt-10">
           <div className="w-1/4 flex flex-col">
             <Text label="NEW IN" className="text-2xl font-semibold text-black" />
             <Text label="#주목할만한신상품" className="text-xs text-gray" />
@@ -397,7 +397,7 @@ export default function Home() {
         </div>
 
         {/* TV */}
-        <div className="flex items-start">
+        <div className="flex items-start mt-10">
           <div className="w-1/4 flex flex-col">
             <Text
               label="저렴한 거격과 보장된 성능, 더함 TV"
@@ -469,7 +469,7 @@ export default function Home() {
         </div>
 
         {/* Top Seven */}
-        <div className="flex items-start">
+        <div className="flex items-start mt-10">
           <div className="w-1/4 flex flex-col">
             <Text
               label="판매량 TOP7 가성비 인기가전 모음"
@@ -541,7 +541,7 @@ export default function Home() {
         </div>
 
         {/* PC */}
-        <div className="flex items-start">
+        <div className="flex items-start mt-10">
           <div className="w-1/4 flex flex-col">
             <Text
               label="성능보장, PC주변기기 & 스피커 추천"
@@ -613,7 +613,7 @@ export default function Home() {
         </div>
 
         {/* Phone */}
-        <div className="flex items-start">
+        <div className="flex items-start mt-10">
           <div className="w-1/4 flex flex-col">
             <Text
               label="품절임박! 마지막 수량 한정특가 상품"
@@ -685,7 +685,7 @@ export default function Home() {
         </div>
 
         {/* Game */}
-        <div className="flex items-start">
+        <div className="flex items-start mt-10">
           <div className="w-1/4 flex flex-col">
             <Text
               label="게임기기 최저가 & 신작 모음게임기기 최저가 & 신작 모음"
@@ -757,7 +757,7 @@ export default function Home() {
         </div>
 
         {/* Mouse */}
-        <div className="flex items-start">
+        <div className="flex items-start mt-10">
           <div className="w-1/4 flex flex-col">
             <Text
               label="로지텍 AS보장 정품 마우스/키보드 단독특가"
@@ -832,7 +832,7 @@ export default function Home() {
         </div>
 
         {/* LCD */}
-        <div className="flex items-start">
+        <div className="flex items-start mt-10">
           <div className="w-1/4 flex flex-col">
             <Text label="맥북 클리어런스 세일!" className="text-2xl font-semibold text-black" />
             <Text
