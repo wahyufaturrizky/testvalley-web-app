@@ -1,4 +1,4 @@
-import ImageNext from "@/component/Image";
+import ImageNext from "@/components/Image";
 import Text from "./Text";
 
 const Header = () => {

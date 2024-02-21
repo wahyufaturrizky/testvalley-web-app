@@ -1,7 +1,7 @@
 "use client";
-import ImageNext from "@/component/Image";
-import Input from "@/component/Input";
-import Text from "@/component/Text";
+import ImageNext from "@/components/Image";
+import Input from "@/components/Input";
+import Text from "@/components/Text";
 import useDebounce from "@/hook/useDebounce";
 import {
   CollectionType,
