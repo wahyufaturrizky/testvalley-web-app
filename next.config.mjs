@@ -26,6 +26,12 @@ const nextConfig = {
         port: "",
         pathname: "/media/**",
       },
+      {
+        protocol: "https",
+        hostname: "www.testvalley.kr",
+        port: "",
+        pathname: "/common/**",
+      },
     ],
   },
 };
